@@ -1,6 +1,8 @@
 package br.com.projetc.screenmatch;
 
+import br.com.projetc.screenmatch.model.DadosSerie;
 import br.com.projetc.screenmatch.service.ConsumoApi;
+import br.com.projetc.screenmatch.service.ConvertDados;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,5 +23,9 @@ public class ScreenmatchApplication implements CommandLineRunner {
 		ConsumoApi consumoApi = new ConsumoApi();
 		var json = consumoApi.obterDados(endereco);
 		System.out.println(json);
+
+		ConvertDados convertDados = new ConvertDados();
+		DadosSerie dados = convertDados.obterDados(json, DadosSerie.class);
+		System.out.println(dados);
 	}
 }
